@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './SignupForm.css';
 
-const SignupForm = ({ onSignup }) => {
+const SignupForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [redirect, setRedirect] = useState(false); // State to handle redirection
+  const navigate = useNavigate(); // Updated import statement
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,19 +20,15 @@ const SignupForm = ({ onSignup }) => {
       if (response && response.data !== undefined) {
         console.log('Signup successful:', response.data);
         setError('');
-        setRedirect(true);
+        navigate('/dashboard'); // Redirect to dashboard after successful signup
       } else {
         console.error('Signup error: Response data is undefined');
       }
     } catch (error) {
-      console.error('Signup error:', error.response.data);
-      setError(error.response.data.error || 'An error occurred during signup');
+      console.error('Signup error:', error.response?.data);
+      setError(error.response?.data?.error || 'An error occurred during signup');
     }
   };
-
-  if (redirect) {
-    return <Navigate to="/dashboard" />; // Redirect to dashboard if redirect is true
-  }
 
   return (
     <div className="signup-form-container">

@@ -1,38 +1,28 @@
-.signup-form-container {
-    max-width: 400px;
+
+  
+  /* Dashboard.css */
+  .dashboard-container {
+    width: 600px;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .signup-form-container h2 {
-    margin-bottom: 20px;
-  }
-  
-  .signup-form-container input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .signup-form-container button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
+    background-color: #333;
     color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   }
   
-  .error-message {
-    color: red;
-    margin-top: 10px;
+  .dashboard-title {
+    text-align: center;
   }
-
+  
+  .dashboard-content {
+    margin-top: 20px;
+  }
+  
+  .dashboard-content h3 {
+    text-align: center;
+  }
+  
   /* SignupForm.css */
   .signup-container {
     width: 400px;
