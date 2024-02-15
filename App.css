@@ -14,25 +14,28 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #2c3e50; /* Update background color */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #ecf0f1; /* Update text color */
 }
 
 .App-link {
-  color: #61dafb;
+  color: #3498db; /* Update link color */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.background {
+  background: url('https://media.istockphoto.com/id/1212891045/vector/3d-earth-graphic-symbolizing-global-trade-vector-illustration.jpg?s=612x612&w=0&k=20&c=iQ7UXBjmK_gcuyhGAsuKkuyRg3Sbv9j-m2JtQss1LVg=') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh; /* Ensure the background covers the entire viewport */
+  display: flex; /* Ensure the div expands to fill its container */
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
 }
