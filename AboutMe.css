@@ -1,0 +1,40 @@
+.aboutme-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .aboutme-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .aboutme-container p {
+    margin-bottom: 10px;
+  }
+  
+  .aboutme-container a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .aboutme-container a:hover {
+    text-decoration: underline;
+  }
+  
+  .aboutme-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .aboutme-container button:hover {
+    background-color: #0056b3;
+  }
+  

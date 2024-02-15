@@ -1,53 +1,49 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import './SignupForm.css';
+import './SignupForm.css'; // Import SignupForm.css
 
 const SignupForm = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate(); // Updated import statement
+  const { register, handleSubmit, setError, formState: { errors } } = useForm();
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:5000/api/auth/signup', {
-        username,
-        password
-      });
-      console.log('Signup response:', response); // Log the entire response object
-      if (response && response.data !== undefined) {
-        console.log('Signup successful:', response.data);
-        setError('');
-        navigate('/dashboard'); // Redirect to dashboard after successful signup
-      } else {
-        console.error('Signup error: Response data is undefined');
-      }
-    } catch (error) {
-      console.error('Signup error:', error.response?.data);
-      setError(error.response?.data?.error || 'An error occurred during signup');
+  const onSubmit = async (data) => {
+    // make surepassword match
+    if (data.password !== data.confirmPassword) {
+      setError('confirmPassword', { type: 'manual', message: 'Passwords must match' });
+      return;
     }
+
+    // req to backend server
+    const response = await fetch('/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      console.log('User created successfully');
+    } else {
+      console.error('Error creating user:', await response.text());
+    }
+    navigate('/dashboard');
   };
 
   return (
-    <div className="signup-form-container">
+    <div className="signup-form-container"> {}
       <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Signup</button>
-        {error && <p className="error-message">{error}</p>}
+      <form onSubmit={handleSubmit(onSubmit)} className="signup-form"> {/* Apply signup-form class */}
+        <input {...register('username', { required: true })} placeholder="Username" />
+        {errors.username && <p>{errors.username.message}</p>}
+        <input {...register('email', { required: true, pattern: /^\S+@\S+$/i })} placeholder="Email" />
+        {errors.email && <p>{errors.email.message}</p>}
+        <input {...register('password', { required: true, minLength: 6 })} type="password" placeholder="Password" />
+        {errors.password && <p>{errors.password.message}</p>}
+        <input {...register('confirmPassword', { required: true })} type="password" placeholder="Confirm Password" />
+        {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
+        <button type="submit">Sign Up</button>
       </form>
     </div>
   );
