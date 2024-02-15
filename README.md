@@ -34,7 +34,11 @@ Logout functionality: Allows users to securely log out of their accounts.
 Struggles Encountered
 Allow Todos to save to accounts
 
+Links
+
 3rd party API: https://api.quotable.io/random
 
 Link to backend:
 https://github.com/MalaminWaggeh/Waggeh_Malamin_MyTodoApp_Capstone_backend
+
+Background image: https://api.quotable.io/random
